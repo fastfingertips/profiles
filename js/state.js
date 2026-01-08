@@ -11,6 +11,7 @@ export const State = {
 export function initDOMReferences() {
     UI.main = document.getElementById('main');
     UI.search = document.getElementById('search');
+    UI.searchWrapper = document.querySelector('.search-wrapper');
     UI.searchLoader = document.getElementById('searchLoader');
     UI.modalOverlay = document.getElementById('modalOverlay');
     UI.modalClose = document.getElementById('modalClose');

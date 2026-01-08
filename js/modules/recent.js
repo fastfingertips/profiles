@@ -13,7 +13,11 @@ export function addToRecent(user) {
 
 export function displayRecent() {
     const recent = JSON.parse(localStorage.getItem('recent_profiles') || '[]');
-    if (recent.length === 0) { UI.recentSearches.innerHTML = ''; return; }
+
+    if (recent.length === 0) {
+        UI.recentSearches.innerHTML = '';
+        return;
+    }
 
     const chips = recent.map(user => `
     <div class="recent-chip" data-login="${user.login}">
