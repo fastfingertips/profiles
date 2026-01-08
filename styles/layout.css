@@ -1,0 +1,151 @@
+/* Layout & Reset */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    user-select: none;
+    cursor: default;
+}
+
+::selection {
+    background: var(--accent-selection);
+    color: #ffffff;
+}
+
+* {
+    cursor: inherit;
+}
+
+body,
+div,
+span,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+footer,
+main,
+section,
+article,
+nav,
+ul,
+li,
+button,
+a {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.bio,
+.user-name a,
+.username,
+.repo-name,
+.modal-body pre {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    cursor: text;
+}
+
+#joinedDate,
+.meta-item.clickable,
+a,
+button {
+    cursor: pointer;
+}
+
+input,
+textarea {
+    cursor: text;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+    padding: 12px 0;
+    display: flex;
+    flex-direction: column;
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.container.has-result .main-content {
+    padding: 0 0 40px;
+}
+
+.container:not(.has-result) .main-content {
+    padding: 0;
+    pointer-events: none;
+}
+
+.card-stack {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    opacity: 0.6;
+}
+
+.empty-icon {
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    opacity: 0.3;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.empty-state p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}

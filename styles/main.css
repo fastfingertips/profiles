@@ -1,0 +1,12 @@
+/* Google Fonts import moved to index.html for better performance */
+
+/* Base & Variables */
+@import './variables.css';
+@import './layout.css';
+@import './background.css';
+
+/* Components */
+@import './card.css';
+@import './modal.css';
+@import './header.css';
+@import './footer.css';

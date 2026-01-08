@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Search and explore GitHub profiles with a beautiful interface" />
+  <meta name="theme-color" content="#0d1117" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GitHub Profile Explorer" />
+  <meta property="og:description" content="Discover and explore GitHub profiles with a beautiful, modern interface." />
+
+  <title>GitHub Profile Explorer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.bunny.net">
+  <link href="https://fonts.bunny.net/css?family=outfit:300,400,500,600,700|inter:300,400,500,600,700"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+
+<body>
+  <div class="bg-layers">
+    <div class="bg-gradient bg-active" id="bg1"></div>
+    <div class="bg-gradient" id="bg2"></div>
+  </div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <div data-partial="partials/header.html"></div>
+    <div class="search-spacer"></div>
+    <div data-partial="partials/search.html"></div>
+
+    <main id="main" class="main-content">
+      <div id="cardStack" class="card-stack">
+        <div class="empty-state">
+          <div class="empty-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <p>Start typing to explore profiles</p>
+        </div>
+      </div>
+      <div id="stackNav" class="stack-nav"></div>
+    </main>
+  </div>
+
+  <div data-partial="partials/footer.html"></div>
+  <div data-partial="partials/modal-json.html"></div>
+  <div data-partial="partials/modal-about.html"></div>
+  <div data-partial="partials/modal-avatar.html"></div>
+
+  <canvas id="colorCanvas" style="display: none;"></canvas>
+  <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
