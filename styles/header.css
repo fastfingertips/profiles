@@ -222,3 +222,24 @@
         transform: translateY(-50%) rotate(360deg);
     }
 }
+
+@media (max-width: 540px) {
+
+    /* Hide recent searches on mobile */
+    .search-recent {
+        display: none !important;
+    }
+
+    /* Reset search bar width and padding for mobile */
+    .search-wrapper.has-recents {
+        max-width: 400px;
+    }
+
+    .search-wrapper.has-recents #search {
+        padding-right: 44px;
+    }
+
+    .search-wrapper.has-recents .search-loader {
+        right: 14px;
+    }
+}

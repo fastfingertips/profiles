@@ -704,10 +704,48 @@
 }
 
 @media (max-width: 540px) {
+
+    /* Only allow one card on mobile stack */
+    .profile-card:not(:first-child) {
+        display: none !important;
+    }
+
+    /* Hide stack navigation on mobile */
+    .stack-nav {
+        display: none !important;
+    }
+
+    /* Move buttons back inside the card for mobile */
+    .btn-close {
+        top: 12px;
+        right: 12px;
+    }
+
+    .btn-code {
+        top: 12px;
+        right: 48px;
+    }
+
+    /* Adjust header for inner buttons */
     .card-header {
+        padding-top: 50px;
         flex-direction: column;
         align-items: center;
         text-align: center;
+    }
+
+    .user-details {
+        width: 100%;
+    }
+
+    .user-header-row {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .user-name {
+        width: auto;
+        margin: 0 auto;
     }
 
     .meta-info {
@@ -727,12 +765,8 @@
         border-bottom: 1px solid var(--border-muted);
     }
 
-    .stack-nav {
-        right: 50%;
-        top: auto;
-        bottom: 20px;
-        transform: translateX(50%);
-        flex-direction: row;
-        padding: 8px 16px;
+    /* Hide section-specific timings on mobile */
+    .section-timing {
+        display: none !important;
     }
 }
