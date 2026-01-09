@@ -1,5 +1,5 @@
 import { State, UI } from '../state.js';
-import { createUserCard, createErrorCard } from './cards.js';
+import { createUserCard, createErrorCard, updateRepos } from './cards.js';
 import { updateBackgroundColor, resetBackgroundColor, showLoading, hideLoading } from './ui.js';
 import { addToRecent } from './recent.js';
 
@@ -7,31 +7,44 @@ const APIURL = 'https://api.github.com/users/';
 
 export async function getUser(username) {
     showLoading();
+    const totalStart = performance.now();
 
     try {
+        const userStart = performance.now();
         const response = await fetch(APIURL + username);
         if (!response.ok) {
             const error = new Error('API Error');
-            error.response = { status: response.status }; // Mimic axios error structure for compatibility
+            error.response = { status: response.status };
             throw error;
         }
         const data = await response.json();
-
-        const repos = await getRepos(username);
-
-        State.currentUser = data;
-        State.currentRepos = repos;
-
-        State.userCache.set(data.login.toLowerCase(), { user: data, repos });
+        const userDuration = Math.round(performance.now() - userStart);
 
         // Remove any existing error cards on successful search
         const existingError = UI.cardStack.querySelector('.error-card');
-        if (existingError) existingError.remove(); // Direct removal since we don't import deleteCard to avoid cycle
+        if (existingError) existingError.remove();
 
         document.querySelector('.container').classList.add('has-result');
-        createUserCard(data, repos);
+
+        // Render card immediately with loading state for repos
+        createUserCard(data, null, { user: userDuration, repos: 0, total: userDuration });
         updateBackgroundColor(data.avatar_url);
         addToRecent(data);
+
+        // Fetch repos in background
+        const reposStart = performance.now();
+        const repos = await getRepos(username);
+        const reposDuration = Math.round(performance.now() - reposStart);
+
+        const totalDuration = Math.round(performance.now() - totalStart);
+
+        State.currentUser = data;
+        State.currentRepos = repos;
+        State.userCache.set(data.login.toLowerCase(), { user: data, repos });
+
+        // Update the existing card with repos
+        updateRepos(data.login, repos, { user: userDuration, repos: reposDuration, total: totalDuration });
+
     } catch (err) {
         State.currentUser = null;
         State.currentRepos = null;

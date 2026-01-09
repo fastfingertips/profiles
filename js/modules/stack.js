@@ -112,7 +112,7 @@ export function bringCardToFront(card) {
     }
 
     updateStackNav();
-    setTimeout(() => card.classList.remove('restack-promote'), 500);
+    setTimeout(() => card.classList.remove('restack-promote'), 800);
 }
 
 export function deleteCard(card) {
