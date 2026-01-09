@@ -67,10 +67,13 @@
 
 .search-wrapper {
     position: relative;
-    max-width: 500px;
+    max-width: 400px;
     margin: 0 auto;
-    overflow: hidden;
-    /* Clip anything that overflows */
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.search-wrapper.has-recents {
+    max-width: 680px;
 }
 
 .search-icon {
@@ -98,8 +101,13 @@
     background: var(--bg-secondary);
     border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
-    transition: all var(--transition-normal);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     outline: none;
+}
+
+.search-wrapper.has-recents #search {
+    padding-right: 320px;
+    /* Space for chips */
 }
 
 #search:focus {
@@ -118,8 +126,12 @@
     border-top-color: var(--accent-blue);
     border-radius: 50%;
     opacity: 0;
-    transition: opacity var(--transition-fast);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 2;
+}
+
+.search-wrapper.has-recents .search-loader {
+    right: 320px;
 }
 
 .search-loader.active {

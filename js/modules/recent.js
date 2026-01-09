@@ -16,8 +16,11 @@ export function displayRecent() {
 
     if (recent.length === 0) {
         UI.recentSearches.innerHTML = '';
+        UI.searchWrapper.classList.remove('has-recents');
         return;
     }
+
+    UI.searchWrapper.classList.add('has-recents');
 
     const chips = recent.map(user => `
     <div class="recent-chip" data-login="${user.login}">
