@@ -226,9 +226,18 @@ function toggleJoinedDate(joinedEl, createdAt) {
   joinedEl.classList.add('fade');
 
   setTimeout(() => {
-    joinedEl.textContent = nextRelative
+    const isNowRelative = nextRelative;
+    joinedEl.textContent = isNowRelative
       ? getRelativeTime(createdAt)
       : 'Joined ' + formatDate(createdAt);
+
+    const parent = joinedEl.closest('.joined-meta');
+    if (parent) {
+      parent.title = isNowRelative
+        ? 'Click to see exact join date'
+        : 'Click to see time passed';
+    }
+
     joinedEl.classList.remove('fade');
   }, 300);
 }
@@ -238,6 +247,8 @@ function animateJoinedDate(joinedEl, createdAt) {
 
   joinedEl.textContent = getRelativeTime(createdAt);
   joinedEl.dataset.relative = 'true';
+  const parent = joinedEl.closest('.joined-meta');
+  if (parent) parent.title = 'Click to see exact join date';
 
   setTimeout(() => {
     if (joinedEl.dataset.relative !== 'true') return;
@@ -246,6 +257,8 @@ function animateJoinedDate(joinedEl, createdAt) {
     setTimeout(() => {
       joinedEl.textContent = 'Joined ' + formatDate(createdAt);
       joinedEl.dataset.relative = 'false';
+      const parent = joinedEl.closest('.joined-meta');
+      if (parent) parent.title = 'Click to see time passed';
       joinedEl.classList.remove('fade');
     }, 300);
   }, 2000);
